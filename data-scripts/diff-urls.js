@@ -8,9 +8,7 @@ db.events.aggregate([
             .toString()
             .replace("ObjectId\(\"", "")
             .replace("\"\)", "");
-        var newDoc = {};
-        newDoc[id] = doc.diff_url;
-        return newDoc;
+        return {"id": id, "diff_url": doc.diff_url};
     })
     .forEach(function(line) {
         printjsononeline(line);
