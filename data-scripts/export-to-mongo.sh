@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source utils.sh
-
 cd "$(dirname $0)"
+
+source utils.sh
 
 DATA_FILE=$1
 if [ -z "$DATA_FILE" ]; then

@@ -1,8 +1,16 @@
-var cursor = db.events.aggregate([
-    {$match: {"type": "PullRequestEvent"}},
-    {$project: {"diff_url": "$payload.pull_request.diff_url"}},
-    {$limit: 100}
-]);
-while(cursor.hasNext()) {
-    printjsononeline(cursor.next());
-}
+db.events.aggregate([
+        {$match: {"type": "PullRequestEvent"}},
+        {$project: {"diff_url": "$payload.pull_request.diff_url"}},
+        {$limit: 50}
+    ])
+    .map(function(doc) {
+        var id = doc._id
+            .toString()
+            .replace("ObjectId\(\"", "")
+            .replace("\"\)", "");
+        return {"id": id, "diff_url": doc.diff_url};
+    })
+    .forEach(function(line) {
+        printjsononeline(line);
+    })
+    ;

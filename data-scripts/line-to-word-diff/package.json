@@ -1,0 +1,17 @@
+{
+  "name": "line-to-word-diff",
+  "version": "1.0.0",
+  "description": "Convert line diffs to word diffs",
+  "main": "index.js",
+  "dependencies": {
+    "diff": "^2.2.1",
+    "diff-linetoword": "^1.1.2",
+    "get-stdin": "^5.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "John Starich",
+  "license": "Apache-2.0"
+}
