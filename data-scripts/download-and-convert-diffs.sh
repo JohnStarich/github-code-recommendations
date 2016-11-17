@@ -12,7 +12,10 @@ while read line; do
     id=$(awk '{ print $1 }' <<<$args)
     success "[$counter] Beginning processing on ID: $id"
     diff_url=$(awk '{ print $2 }' <<<$args)
-    rate_limit "$RATE_LIMIT" wget --no-verbose --output-document - "$diff_url" \| node line-to-word-diff/index.js "$id"
+    rate_limit "$RATE_LIMIT" \
+        wget --no-verbose --output-document - "$diff_url" \| \
+        awk '"length($0) < 1000"' \| \
+        node line-to-word-diff/index.js "$id"
     counter=$(($counter + 1))
 done
 wait
