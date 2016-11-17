@@ -9,7 +9,7 @@ const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const ObjectId = mongodb.ObjectId;
 
-const MAX_DIFF_CHAR_COUNT = 500000;
+const MAX_DIFF_CHAR_COUNT = 100000;
 
 function usage() {
     console.log("node index.js MONGODB_ID < line_diff_contents.diff");
