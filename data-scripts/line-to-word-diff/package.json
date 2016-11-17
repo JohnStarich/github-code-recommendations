@@ -4,9 +4,11 @@
   "description": "Convert line diffs to word diffs",
   "main": "index.js",
   "dependencies": {
+    "asyncawait": "^1.0.6",
     "diff": "^2.2.1",
     "diff-linetoword": "^1.1.2",
-    "get-stdin": "^5.0.1"
+    "get-stdin": "^5.0.1",
+    "mongodb": "^2.2.11"
   },
   "devDependencies": {},
   "scripts": {

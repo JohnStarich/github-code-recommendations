@@ -1,5 +1,5 @@
 db.events.aggregate([
-        {$match: {"type": "PullRequestEvent"}},
+        {$match: {"type": "PullRequestEvent", "word_diff": {$exists: false}}},
         {$project: {"diff_url": "$payload.pull_request.diff_url"}},
         {$limit: 50}
     ])
