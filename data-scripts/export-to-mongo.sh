@@ -4,15 +4,17 @@ cd "$(dirname $0)"
 
 source utils.sh
 
-DATA_FILE=$1
-if [ -z "$DATA_FILE" ]; then
+DATA_FILES=$@
+if [ -z "$DATA_FILES" ]; then
     error 'Please provide a data file to export to MongoDB'
     exit 2
 fi
-if [ ! -f "$DATA_FILE" ]; then
-    error "File $DATA_FILE does not exist"
-    exit 2
-fi
 
-mongoimport -d github -c events <(gunzip -c "$DATA_FILE")
-
+for data_file in $DATA_FILES; do
+    if [ ! -f "$data_file" ]; then
+        error "File $data_file does not exist"
+        exit 2
+    fi
+    success "Importing $data_file"
+    mongoimport -d github -c events <(gunzip -c "$data_file")
+done

@@ -13,7 +13,9 @@ while read line; do
     success "[$counter] Beginning processing on ID: $id"
     diff_url=$(awk '{ print $2 }' <<<$args)
     rate_limit "$RATE_LIMIT" \
-        wget --no-verbose --output-document - "$diff_url" \| \
+        curl --user 'JohnStarich:6aa4d28b107fb57bd879c2f6e62a31f5c7680937' \
+            --silent --output - --location \
+            "$diff_url" \| \
         awk '"length($0) < 1000"' \| \
         node line-to-word-diff/index.js "$id"
     counter=$(($counter + 1))
